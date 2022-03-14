@@ -9,8 +9,6 @@ const getAll = async () => {
 
         return result[0]
     } catch (err) {
-        console.log('err');
-        console.log(err);
         return err
     }
 }
