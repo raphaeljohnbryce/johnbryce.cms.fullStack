@@ -1,20 +1,15 @@
-// import connection from '../db.js';
+import connection from '../db.js';
 
-// connection.query(
-//     'SELECT * FROM customers',
-//     (err, results) => {
-//         if (err) {
-//             console.log(err)
-//         } else {
-//             console.log(results)
-//         }
-//     }
-// )
+const getAll = async () => {
+    let result = await connection.promise().query(
+        'SELECT * FROM customers'
+    )
 
-// const getAll = () => {
 
-// }
+    console.log(result)
+    return result[0]
+}
 
-// export {
-//     getAll
-// }
+export default {
+    getAll
+}

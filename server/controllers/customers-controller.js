@@ -3,8 +3,8 @@ import { getAll } from '../bl/customers-bl.js';
 
 const customersRouter = express.Router();
 
-customersRouter.get('/customers', (req, res) => {
-    let result = getAll();
+customersRouter.get('/customers', async(req, res) => {
+    let result = await getAll();
 
     res.send(result)
 })
