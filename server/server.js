@@ -1,11 +1,4 @@
-import mysql from 'mysql2';
-
-const connection = mysql.createConnection({
-    host: 'localhost',
-    user: 'root',
-    password: 'Aa123456',
-    database: 'cms'
-})
+import connection from './db.js';
 
 connection.query(
     'SELECT * FROM customers',
