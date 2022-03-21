@@ -16,6 +16,7 @@ function App() {
   return (
     <div className="App">
       <h1>Customer Management System</h1>
+      <h1>sara is a queen</h1>
       <ul>
         {customers.map(customer => (
           <li key={customer.id}>
