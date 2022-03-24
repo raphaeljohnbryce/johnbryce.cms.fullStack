@@ -1,5 +1,5 @@
 import express from 'express';
-import { addCustomer, getAll } from '../bl/customers-bl.js';
+import { addCustomer, getAll, deleteCustomer } from '../bl/customers-bl.js';
 
 const customersRouter = express.Router();
 
@@ -8,9 +8,9 @@ customersRouter.get('/customers', async (_, res) => {
 
     if (!result.success) {
         res.status(500).send(result)
+    } else {
+        res.send(result)
     }
-
-    res.send(result)
 })
 
 customersRouter.post('/customers', async (req, res) => {
@@ -26,7 +26,16 @@ customersRouter.post('/customers', async (req, res) => {
 
         res.send(result)
     }
+})
 
+customersRouter.delete('/customers/:id', async (req, res) => {
+    let result = await deleteCustomer(req.params.id);
+
+    if (!result.success) {
+        res.status(500).send(result)
+    } else {
+        res.send(result)
+    }
 })
 
 export {

@@ -9,7 +9,12 @@ const addCustomer = async (body) => {
         body.email, body.firstName, body.lastName, body.phone, body.password, body.statusId)
 }
 
+const deleteCustomer = async (id) => {
+    return await customersDal.deleteCustomer(id)
+}
+
 export {
     getAll,
-    addCustomer
+    addCustomer,
+    deleteCustomer
 }

@@ -48,8 +48,30 @@ const addCustomer = async (email, firstName, lastName, phone, password, statusId
     }
 }
 
+const deleteCustomer = async (id) => {
+    let result = {
+        success: false,
+        data: null
+    }
+
+    try {
+        let res = await connection.promise().query(
+            `DELETE FROM customers WHERE id = ${id};`
+        )
+
+        result.success = true
+
+        return result
+    } catch (err) {
+        result.success = false
+        result.data = err
+
+        return result
+    }
+}
 
 export default {
     getAll,
-    addCustomer
+    addCustomer,
+    deleteCustomer
 }
