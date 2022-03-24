@@ -1,6 +1,6 @@
 import  express from "express";
-import { customersRouter } from "./controllers/customers-controller.js";
 import cors from 'cors'
+import { customersRouter } from "./controllers/customers-controller.js";
 
 const app = express();
 
