@@ -32,6 +32,7 @@ const CreateCustomerForm = (props) => {
 
     return (
         <div className={classes.root}>
+            <h3>Create new customer</h3>
             <label >First name:</label>
             <br />
             <input
@@ -75,6 +76,8 @@ const CreateCustomerForm = (props) => {
                 value={newCustomer.statusId || 0}
             />
             <br />
+            <br />
+            <button>Create</button>
         </div>
     )
 }
