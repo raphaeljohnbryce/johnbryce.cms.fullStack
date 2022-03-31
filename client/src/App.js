@@ -3,8 +3,15 @@ import { useEffect, useState } from 'react';
 import CreateCustomerForm from './components/CreateCustomerForm'
 
 function App() {
-
     const [customers, setCustomers] = useState([]);
+
+    const addCustomerToList = newCustomer => {
+        let tempCustomers = [...customers]
+
+        tempCustomers.push(newCustomer)
+
+        setCustomers(tempCustomers)
+    }
 
     useEffect(() => {
         fetch('http://localhost:5000/api/customers')
@@ -44,7 +51,7 @@ function App() {
                     ))
                 }
             </ul>
-            <CreateCustomerForm />
+            <CreateCustomerForm addCustomerToList={addCustomerToList} />
         </div>
     );
 }

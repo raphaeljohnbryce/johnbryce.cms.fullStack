@@ -10,6 +10,7 @@ const useStyle = makeStyles({
 
 const CreateCustomerForm = (props) => {
     const classes = useStyle()
+    const { addCustomerToList } = props
 
     const [newCustomer, setNewCustomer] = useState({
         firstName: '',
@@ -32,8 +33,12 @@ const CreateCustomerForm = (props) => {
 
     const handleSubmit = e => {
         e.preventDefault()
-        console.log(newCustomer)
-        formValidation()
+
+        if (formValidation()) {
+            createCustomer()
+        } else {
+            alert('Form fields not valid.')
+        }
     }
 
     const isEmptyString = str => {
@@ -41,14 +46,40 @@ const CreateCustomerForm = (props) => {
     }
 
     const formValidation = () => {
-        let isValidForm =
+        return (
             isEmptyString(newCustomer.firstName) &&
             isEmptyString(newCustomer.lastName) &&
             isEmptyString(newCustomer.phone) &&
             isEmptyString(newCustomer.email) &&
-            isEmptyString(newCustomer.password)
+            isEmptyString(newCustomer.password))
+    }
 
-        console.log(isValidForm)
+    const createCustomer = () => {
+        // preper body data
+        let body = {
+            ...newCustomer
+        }
+        // post request
+        fetch('http://localhost:5000/api/customers',
+            {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(body)
+            })
+            .then(res => res.json())
+            .then(data => {
+                if (data.success) {
+                    addCustomerToList(data.data)
+                } else {
+                    alert('Server error: failed to create new customer.')
+                }
+                console.log('data')
+                console.log(data)
+            })
+            .catch(err => {
+                console.log('err')
+                console.log(err)
+            })
     }
 
     return (
