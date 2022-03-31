@@ -1,5 +1,6 @@
 import './App.css';
 import { useEffect, useState } from 'react';
+import CreateCustomerForm from './components/CreateCustomerForm'
 
 function App() {
 
@@ -31,16 +32,19 @@ function App() {
         <div className="App">
             <h1>Customer Management System</h1>
             <ul>
-                {customers.map(customer => (
-                    <li
-                        onClick={() => {
-                            handleDeleteCustomer(customer.id)
-                        }}
-                        key={customer.id}>
-                        {customer.firstName} {customer.lastName}
-                    </li>
-                ))}
+                {
+                    customers.map(customer => (
+                        <li
+                            onClick={() => {
+                                handleDeleteCustomer(customer.id)
+                            }}
+                            key={customer.id}>
+                            {customer.firstName} {customer.lastName}
+                        </li>
+                    ))
+                }
             </ul>
+            <CreateCustomerForm />
         </div>
     );
 }
