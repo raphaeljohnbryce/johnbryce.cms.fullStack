@@ -20,33 +20,60 @@ const CreateCustomerForm = (props) => {
         statusId: null
     })
 
+    const handleInputChange = (e, name) => {
+        let inputValue = e.target.value
+        let tempNewCustomer = {
+            ...newCustomer,
+            [name]: inputValue
+        }
 
+        setNewCustomer(tempNewCustomer)
+    }
 
     return (
         <div className={classes.root}>
             <label >First name:</label>
             <br />
-            <input type="text" />
+            <input
+                type="text"
+                onChange={(e) => handleInputChange(e, 'firstName')}
+                value={newCustomer.firstName}
+            />
             <br />
             <label >Last name:</label>
             <br />
-            <input type="text" />
+            <input type="text"
+                onChange={(e) => handleInputChange(e, 'lastName')}
+                value={newCustomer.lastName}
+            />
             <br />
             <label >Phone:</label>
             <br />
-            <input type="text" />
+            <input type="text"
+                onChange={(e) => handleInputChange(e, 'phone')}
+                value={newCustomer.phone}
+            />
             <br />
             <label >Email:</label>
             <br />
-            <input type="text" />
+            <input type="text"
+                onChange={(e) => handleInputChange(e, 'email')}
+                value={newCustomer.email}
+            />
             <br />
             <label >Password:</label>
             <br />
-            <input type="text" />
+            <input type="text"
+                onChange={(e) => handleInputChange(e, 'password')}
+                value={newCustomer.password}
+            />
             <br />
             <label >Status:</label>
             <br />
-            <input type="number" />
+            <input type="number"
+                onChange={(e) => handleInputChange(e, 'statusId')}
+                value={newCustomer.statusId || 0}
+            />
             <br />
         </div>
     )
